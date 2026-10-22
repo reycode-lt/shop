@@ -1,0 +1,2340 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101010">
+  <meta name="description" content="ReyCode Shop — Informasi layanan digital, panduan penggunaan, dan pusat bantuan.">
+  <title>ReyCode Shop — Digital Store</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --black: #101010;
+      --dark: #171717;
+      --white: #ffffff;
+      --gray: #737373;
+      --light-gray: #f5f5f5;
+      --border: #e7e7e7;
+      --container: 1180px;
+      --radius: 15px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      font-family: "DM Sans", sans-serif;
+      background: var(--white);
+      color: var(--black);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body, button, input {
+      font-family: "DM Sans", sans-serif;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input {
+      font: inherit;
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible {
+      outline: 2px solid #777;
+      outline-offset: 4px;
+    }
+
+    .container {
+      width: min(var(--container), calc(100% - 48px));
+      margin-inline: auto;
+    }
+
+    .icon {
+      width: 21px;
+      height: 21px;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    /* NAVIGATION */
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(16, 16, 16, 0.96);
+      color: white;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      flex-shrink: 0;
+    }
+
+    .brand-logo {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      color: var(--black);
+      background: white;
+      border-radius: 9px;
+      font-family: "Manrope", sans-serif;
+      font-size: 23px;
+      font-weight: 800;
+    }
+
+    .brand-name {
+      font-family: "Manrope", sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      margin-inline: auto;
+    }
+
+    .nav-links a {
+      color: #c7c7c7;
+      font-size: 13px;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .search-trigger {
+      width: 215px;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 10px 12px;
+      color: #bdbdbd;
+      background: #202020;
+      border: 1px solid #383838;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 12px;
+      text-align: left;
+    }
+
+    .search-trigger span {
+      flex: 1;
+    }
+
+    .search-shortcut {
+      color: #aaa;
+      border: 1px solid #484848;
+      border-radius: 5px;
+      padding: 1px 5px;
+      font-size: 10px;
+    }
+
+    .button {
+      min-height: 43px;
+      padding: 0 19px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      border: 1px solid transparent;
+      border-radius: 9px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .2s, background .2s, border-color .2s;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-white {
+      background: white;
+      color: #111;
+    }
+
+    .button-white:hover {
+      background: #eaeaea;
+    }
+
+    .button-outline {
+      color: white;
+      border-color: #494949;
+      background: transparent;
+    }
+
+    .button-outline:hover {
+      border-color: #aaa;
+      background: rgba(255,255,255,.06);
+    }
+
+    .button-dark {
+      color: white;
+      background: #111;
+    }
+
+    .button-dark:hover {
+      background: #333;
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      place-items: center;
+      background: transparent;
+      color: white;
+      border: 1px solid #444;
+      border-radius: 9px;
+      cursor: pointer;
+    }
+
+    /* HERO */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      color: white;
+      background:
+        radial-gradient(ellipse at 78% 40%, #303030 0%, transparent 37%),
+        radial-gradient(ellipse at 5% 100%, #202020 0%, transparent 40%),
+        linear-gradient(120deg, #080808, #171717 60%, #101010);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 480px;
+      height: 480px;
+      right: 8%;
+      top: -220px;
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 55px rgba(255,255,255,.018),
+        0 0 0 110px rgba(255,255,255,.015);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      min-height: 520px;
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      align-items: center;
+      gap: 45px;
+      padding-block: 65px 50px;
+      position: relative;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 19px;
+      color: #a9a9a9;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 23px;
+      height: 1px;
+      background: currentColor;
+    }
+
+    .hero h1 {
+      max-width: 610px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(36px, 4.5vw, 58px);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -2.7px;
+    }
+
+    .hero h1 span {
+      color: #929292;
+    }
+
+    .hero-description {
+      max-width: 495px;
+      margin-top: 22px;
+      color: #bcbcbc;
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    .hero-benefits {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 38px;
+    }
+
+    .benefit {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      min-width: 125px;
+    }
+
+    .benefit-icon {
+      width: 31px;
+      height: 31px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #454545;
+      border-radius: 9px;
+      color: white;
+    }
+
+    .benefit-icon .icon {
+      width: 16px;
+      height: 16px;
+    }
+
+    .benefit strong {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .benefit small {
+      display: block;
+      margin-top: 3px;
+      color: #929292;
+      font-size: 10px;
+    }
+
+    /* HERO VISUAL */
+
+    .hero-visual {
+      position: relative;
+      min-height: 360px;
+      display: grid;
+      place-items: center;
+      perspective: 1000px;
+    }
+
+    .visual-glow {
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      background: #373737;
+      opacity: .25;
+      filter: blur(90px);
+      border-radius: 50%;
+    }
+
+    .device {
+      position: relative;
+      z-index: 1;
+      width: min(100%, 410px);
+      padding: 24px;
+      background: linear-gradient(145deg, #262626, #101010 75%);
+      border: 1px solid #484848;
+      border-radius: 20px;
+      box-shadow:
+        0 35px 80px rgba(0,0,0,.5),
+        inset 0 1px 0 rgba(255,255,255,.09);
+      transform: rotate(-5deg);
+    }
+
+    .device-top {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #383838;
+    }
+
+    .device-mark {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #555;
+      background: linear-gradient(145deg, #333, #171717);
+      border-radius: 11px;
+      font-family: "Manrope", sans-serif;
+      font-size: 23px;
+      font-weight: 800;
+    }
+
+    .device-top strong {
+      display: block;
+      font-size: 13px;
+    }
+
+    .device-top small {
+      display: block;
+      color: #929292;
+      font-size: 10px;
+      margin-top: 2px;
+    }
+
+    .device-label {
+      color: #929292;
+      margin: 22px 0 10px;
+      font-size: 10px;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+
+    .device-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 10px;
+      border-radius: 10px;
+      color: #dedede;
+      font-size: 12px;
+    }
+
+    .device-item + .device-item {
+      margin-top: 3px;
+    }
+
+    .device-item:first-of-type {
+      background: #292929;
+    }
+
+    .device-item .icon {
+      width: 18px;
+      height: 18px;
+      color: #aaa;
+    }
+
+    .device-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 1px solid #383838;
+      color: #999;
+      font-size: 10px;
+    }
+
+    .status-dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      margin-right: 6px;
+      background: #c5c5c5;
+      border-radius: 50%;
+    }
+
+    .floating-card {
+      position: absolute;
+      z-index: 3;
+      right: -5px;
+      bottom: 30px;
+      width: 165px;
+      padding: 15px;
+      color: #111;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 15px 40px #0006;
+    }
+
+    .floating-card .icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .floating-card strong {
+      display: block;
+      margin-top: 8px;
+      font-size: 12px;
+    }
+
+    .floating-card p {
+      margin-top: 3px;
+      color: #777;
+      font-size: 10px;
+    }
+
+    /* INFORMATION */
+
+    .section {
+      padding-block: 83px;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
+    .section-kicker {
+      display: block;
+      margin-bottom: 10px;
+      color: #777;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2 {
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(26px, 3vw, 36px);
+      font-weight: 800;
+      letter-spacing: -1.2px;
+      line-height: 1.25;
+    }
+
+    .section-heading p {
+      max-width: 490px;
+      margin-top: 10px;
+      color: var(--gray);
+      font-size: 13px;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: min(340px, 100%);
+      padding: 13px 15px;
+      border: 1px solid #dedede;
+      border-radius: 10px;
+      background: white;
+      transition: border-color .2s, box-shadow .2s;
+    }
+
+    .search-box:focus-within {
+      border-color: #777;
+      box-shadow: 0 0 0 3px #00000008;
+    }
+
+    .search-box .icon {
+      width: 17px;
+      height: 17px;
+      color: #777;
+    }
+
+    .search-box input {
+      width: 100%;
+      min-width: 0;
+      border: 0;
+      outline: 0;
+      color: #111;
+      background: transparent;
+      font-size: 12px;
+    }
+
+    .search-box input::placeholder {
+      color: #999;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 17px;
+    }
+
+    .info-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 235px;
+      padding: 23px 20px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: white;
+      transition: transform .25s, border-color .25s, box-shadow .25s;
+    }
+
+    .info-card:hover {
+      transform: translateY(-5px);
+      border-color: #c7c7c7;
+      box-shadow: 0 15px 35px #00000008;
+    }
+
+    .info-icon {
+      width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      color: white;
+      background: #111;
+      border-radius: 12px;
+      box-shadow: inset 0 1px 0 #ffffff30;
+    }
+
+    .info-icon .icon {
+      width: 21px;
+      height: 21px;
+    }
+
+    .info-card h3 {
+      margin-top: 18px;
+      font-family: "Manrope", sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -.3px;
+    }
+
+    .info-card p {
+      margin-top: 9px;
+      color: #737373;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .info-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: auto;
+      padding-top: 20px;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .info-link .icon {
+      width: 15px;
+      height: 15px;
+      transition: transform .2s;
+    }
+
+    .info-link:hover .icon {
+      transform: translateX(4px);
+    }
+
+    .empty-state {
+      display: none;
+      padding: 35px;
+      color: #777;
+      text-align: center;
+      border: 1px dashed #ccc;
+      border-radius: 12px;
+      font-size: 13px;
+    }
+
+    /* ABOUT */
+
+    .about-section {
+      padding-block: 10px 80px;
+    }
+
+    .about-panel {
+      display: grid;
+      grid-template-columns: 1fr .8fr;
+      align-items: center;
+      gap: 50px;
+      padding: 44px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: #fafafa;
+    }
+
+    .about-copy h2 {
+      max-width: 530px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(27px, 3vw, 38px);
+      line-height: 1.2;
+      letter-spacing: -1.5px;
+    }
+
+    .about-copy p {
+      max-width: 520px;
+      margin-top: 16px;
+      color: #696969;
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .stat-box {
+      padding: 19px;
+      background: white;
+      border: 1px solid #e6e6e6;
+      border-radius: 12px;
+    }
+
+    .stat-box .icon {
+      width: 20px;
+      height: 20px;
+      margin-bottom: 12px;
+    }
+
+    .stat-box strong {
+      display: block;
+      font-family: "Manrope", sans-serif;
+      font-size: 13px;
+    }
+
+    .stat-box span {
+      display: block;
+      margin-top: 5px;
+      color: #777;
+      font-size: 11px;
+    }
+
+    /* FAQ */
+
+    .faq-section {
+      padding-block: 5px 85px;
+    }
+
+    .faq-layout {
+      display: grid;
+      grid-template-columns: .7fr 1.3fr;
+      gap: 60px;
+    }
+
+    .faq-intro h2 {
+      font-family: "Manrope", sans-serif;
+      font-size: 35px;
+      line-height: 1.2;
+      letter-spacing: -1.3px;
+    }
+
+    .faq-intro p {
+      margin-top: 14px;
+      color: #737373;
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .faq-list {
+      border-top: 1px solid var(--border);
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-question {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      width: 100%;
+      padding: 21px 0;
+      color: #151515;
+      text-align: left;
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .faq-question .icon {
+      width: 18px;
+      height: 18px;
+      transition: transform .25s;
+    }
+
+    .faq-item.active .faq-question .icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      display: none;
+      padding: 0 30px 20px 0;
+      color: #707070;
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+
+    /* CTA */
+
+    .cta-section {
+      padding-block: 0 80px;
+    }
+
+    .cta-panel {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      min-height: 240px;
+      padding: 44px;
+      color: white;
+      background:
+        radial-gradient(ellipse at 88% 45%, #3c3c3c 0%, transparent 37%),
+        linear-gradient(115deg, #090909, #1a1a1a);
+      border: 1px solid #333;
+      border-radius: 17px;
+    }
+
+    .cta-panel::after {
+      content: "R";
+      position: absolute;
+      right: 60px;
+      top: -105px;
+      color: rgba(255,255,255,.035);
+      font-family: "Manrope", sans-serif;
+      font-size: 360px;
+      font-weight: 800;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 1;
+      max-width: 550px;
+    }
+
+    .cta-content .section-kicker {
+      color: #a7a7a7;
+    }
+
+    .cta-content h2 {
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(27px, 3vw, 38px);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -1.4px;
+    }
+
+    .cta-content p {
+      margin-top: 13px;
+      color: #b8b8b8;
+      font-size: 13px;
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 11px;
+      margin-top: 23px;
+    }
+
+    .cta-badge {
+      position: relative;
+      z-index: 1;
+      width: 170px;
+      flex-shrink: 0;
+      padding: 22px;
+      background: linear-gradient(145deg, #292929, #141414);
+      border: 1px solid #505050;
+      border-radius: 15px;
+      box-shadow: 0 20px 45px #0007;
+      transform: rotate(5deg);
+    }
+
+    .cta-badge .brand-logo {
+      margin-bottom: 18px;
+    }
+
+    .cta-badge strong {
+      display: block;
+      font-size: 12px;
+    }
+
+    .cta-badge span {
+      display: block;
+      margin-top: 5px;
+      color: #aaa;
+      font-size: 10px;
+    }
+
+    /* FOOTER */
+
+    .footer {
+      color: white;
+      background: #101010;
+    }
+
+    .footer-main {
+      display: grid;
+      grid-template-columns: 1.3fr .7fr .8fr 1fr;
+      gap: 45px;
+      padding-block: 54px 42px;
+    }
+
+    .footer-brand p {
+      max-width: 245px;
+      margin-top: 15px;
+      color: #969696;
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    .footer-column h3 {
+      margin-bottom: 17px;
+      color: white;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .footer-column a {
+      display: block;
+      width: fit-content;
+      margin-top: 11px;
+      color: #a5a5a5;
+      font-size: 11px;
+      transition: color .2s;
+    }
+
+    .footer-column a:hover {
+      color: white;
+    }
+
+    .newsletter p {
+      color: #a4a4a4;
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 7px;
+      margin-top: 15px;
+    }
+
+    .newsletter-form input {
+      width: 100%;
+      min-width: 0;
+      padding: 12px;
+      color: white;
+      background: #222;
+      border: 1px solid #3c3c3c;
+      border-radius: 8px;
+      outline: 0;
+      font-size: 11px;
+    }
+
+    .newsletter-form input::placeholder {
+      color: #888;
+    }
+
+    .newsletter-form button {
+      width: 42px;
+      height: 42px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      color: #111;
+      background: white;
+      border: 0;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .newsletter-note {
+      margin-top: 8px;
+      color: #aaa;
+      font-size: 10px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding-block: 20px;
+      border-top: 1px solid #333;
+      color: #929292;
+      font-size: 10px;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 13px;
+    }
+
+    .footer-socials a {
+      display: grid;
+      place-items: center;
+      color: #aaa;
+    }
+
+    .footer-socials a:hover {
+      color: white;
+    }
+
+    .footer-socials .icon {
+      width: 17px;
+      height: 17px;
+    }
+
+    /* SEARCH DIALOG */
+
+    .search-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      display: none;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 15vh 20px 30px;
+      background: rgba(0,0,0,.65);
+      backdrop-filter: blur(6px);
+    }
+
+    .search-overlay.open {
+      display: flex;
+    }
+
+    .search-dialog {
+      width: min(560px, 100%);
+      padding: 20px;
+      color: #111;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 16px;
+      box-shadow: 0 30px 100px #0005;
+    }
+
+    .dialog-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .dialog-top strong {
+      font-size: 14px;
+    }
+
+    .close-search {
+      display: grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      background: #f3f3f3;
+      border: 0;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .dialog-input {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px;
+      border: 1px solid #ddd;
+      border-radius: 9px;
+    }
+
+    .dialog-input input {
+      width: 100%;
+      min-width: 0;
+      border: 0;
+      outline: 0;
+      font-size: 13px;
+    }
+
+    .search-results {
+      display: grid;
+      gap: 6px;
+      margin-top: 14px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .search-result {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 9px;
+      font-size: 12px;
+    }
+
+    .search-result:hover {
+      background: #f4f4f4;
+    }
+
+    .search-result .icon {
+      width: 18px;
+      height: 18px;
+    }
+
+    .no-results {
+      padding: 20px;
+      color: #777;
+      text-align: center;
+      font-size: 12px;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 1000px) {
+      .nav-inner {
+        gap: 20px;
+      }
+
+      .nav-links {
+        gap: 16px;
+      }
+
+      .search-trigger {
+        width: 160px;
+      }
+
+      .hero-inner {
+        gap: 20px;
+      }
+
+      .hero h1 {
+        font-size: 46px;
+      }
+
+      .hero-visual {
+        min-height: 330px;
+      }
+
+      .info-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-main {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 760px) {
+      .container {
+        width: min(100% - 34px, var(--container));
+      }
+
+      .nav-inner {
+        min-height: 65px;
+        gap: 12px;
+      }
+
+      .brand-name {
+        font-size: 13px;
+      }
+
+      .brand-logo {
+        width: 34px;
+        height: 34px;
+        font-size: 20px;
+      }
+
+      .menu-toggle {
+        display: grid;
+        margin-left: auto;
+      }
+
+      .nav-actions {
+        gap: 8px;
+      }
+
+      .nav-actions .button {
+        min-height: 39px;
+        padding-inline: 12px;
+        font-size: 11px;
+      }
+
+      .search-trigger {
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        justify-content: center;
+        border-radius: 9px;
+      }
+
+      .search-trigger span,
+      .search-shortcut {
+        display: none;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        display: none;
+        align-items: stretch;
+        gap: 0;
+        margin: 0;
+        padding: 10px 17px 18px;
+        background: #111;
+        border-bottom: 1px solid #333;
+      }
+
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .nav-links a {
+        padding: 13px 10px;
+        border-bottom: 1px solid #292929;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 5px;
+        padding-block: 58px 40px;
+      }
+
+      .hero h1 {
+        max-width: 580px;
+        font-size: clamp(37px, 9vw, 53px);
+        letter-spacing: -1.8px;
+      }
+
+      .hero-description {
+        font-size: 13px;
+      }
+
+      .hero-benefits {
+        gap: 17px;
+        margin-top: 30px;
+      }
+
+      .hero-visual {
+        min-height: 320px;
+        margin-top: 5px;
+      }
+
+      .device {
+        width: min(85%, 400px);
+        padding: 20px;
+      }
+
+      .floating-card {
+        right: 0;
+        bottom: 12px;
+        width: 145px;
+      }
+
+      .section {
+        padding-block: 62px;
+      }
+
+      .section-heading {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .search-box {
+        width: 100%;
+      }
+
+      .info-grid {
+        gap: 12px;
+      }
+
+      .info-card {
+        min-height: 230px;
+        padding: 17px;
+      }
+
+      .info-card h3 {
+        font-size: 13px;
+      }
+
+      .info-card p {
+        font-size: 11px;
+      }
+
+      .about-section {
+        padding-bottom: 60px;
+      }
+
+      .about-panel {
+        grid-template-columns: 1fr;
+        gap: 27px;
+        padding: 27px;
+      }
+
+      .faq-layout {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .faq-intro h2 {
+        font-size: 31px;
+      }
+
+      .cta-section {
+        padding-bottom: 60px;
+      }
+
+      .cta-panel {
+        padding: 30px 25px;
+      }
+
+      .cta-badge {
+        display: none;
+      }
+
+      .footer-main {
+        gap: 35px 25px;
+        padding-block: 42px 32px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .container {
+        width: calc(100% - 28px);
+      }
+
+      .brand {
+        gap: 7px;
+      }
+
+      .brand-name {
+        font-size: 12px;
+      }
+
+      .nav-actions .button {
+        padding-inline: 10px;
+      }
+
+      .hero-benefits {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .info-card {
+        min-height: 190px;
+        padding: 21px;
+      }
+
+      .about-stats {
+        gap: 9px;
+      }
+
+      .stat-box {
+        padding: 14px;
+      }
+
+      .cta-panel {
+        padding: 27px 20px;
+      }
+
+      .footer-main {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px 18px;
+      }
+
+      .footer-brand,
+      .newsletter {
+        grid-column: 1 / -1;
+      }
+
+      .footer-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ICONS -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+    <symbol id="i-search" viewBox="0 0 24 24">
+      <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="1.8"/>
+      <path d="m16 16 4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24">
+      <path d="M5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-external" viewBox="0 0 24 24">
+      <path d="M14 4h6v6m-10 4L20 4M18 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-book" viewBox="0 0 24 24">
+      <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v17H6.5A2.5 2.5 0 0 0 4 22zM4 5.5V22m4-15h8m-8 4h8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24">
+      <rect x="3" y="3" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/>
+      <rect x="14" y="3" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/>
+      <rect x="3" y="14" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/>
+      <rect x="14" y="14" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/>
+    </symbol>
+    <symbol id="i-help" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/>
+      <path d="M9.5 9a2.6 2.6 0 1 1 4.3 2c-1.1 1-1.8 1.3-1.8 3m0 3h.01" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24">
+      <path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+      <path d="m9 12 2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/>
+      <path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-message" viewBox="0 0 24 24">
+      <path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8A8.5 8.5 0 0 1 8.7 3.9a8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-package" viewBox="0 0 24 24">
+      <path d="m12 3 9 5-9 5-9-5 9-5zM3 8v9l9 5 9-5V8M12 13v9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-info" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/>
+      <path d="M12 11v5m0-8h.01" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-file" viewBox="0 0 24 24">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+      <path d="M14 2v6h6M8 13h8m-8 4h8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24">
+      <path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-send" viewBox="0 0 24 24">
+      <path d="m22 2-7 20-4-9-9-4 20-7zM22 2 11 13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24">
+      <path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-x" viewBox="0 0 24 24">
+      <path d="m18 6-12 12M6 6l12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </symbol>
+  </svg>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#beranda" class="brand" aria-label="ReyCode Shop Beranda">
+        <span class="brand-logo">R</span>
+        <span class="brand-name">ReyCode Shop</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks" aria-label="Navigasi utama">
+        <a href="#beranda">Beranda</a>
+        <a href="#layanan">Layanan</a>
+        <a href="#panduan">Panduan</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="search-trigger" type="button" id="openSearch" aria-label="Cari informasi">
+          <svg class="icon"><use href="#i-search"/></svg>
+          <span>Cari di dokumentasi...</span>
+          <small class="search-shortcut">⌘ K</small>
+        </button>
+
+        <a class="button button-white" href="auth.html">Masuk / Daftar</a>
+      </div>
+
+      <button class="menu-toggle" id="menuToggle" type="button"
+        aria-label="Buka menu" aria-expanded="false">
+        <svg class="icon"><use href="#i-menu"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="beranda">
+      <div class="container hero-inner">
+        <div class="hero-content">
+          <div class="eyebrow">Dokumentasi & Pusat Informasi</div>
+
+          <h1>
+            Solusi Digital untuk Kebutuhan <span>Anda.</span>
+          </h1>
+
+          <p class="hero-description">
+            Selamat datang di ReyCode Shop. Temukan informasi mengenai
+            layanan digital, pelajari panduan penggunaan, dan dapatkan
+            jawaban atas pertanyaan yang kamu miliki.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#layanan" class="button button-white">
+              Jelajahi Layanan
+              <svg class="icon"><use href="#i-arrow"/></svg>
+            </a>
+
+            <a href="auth.html" class="button button-outline">
+              Masuk / Daftar
+            </a>
+          </div>
+
+          <div class="hero-benefits">
+            <div class="benefit">
+              <span class="benefit-icon">
+                <svg class="icon"><use href="#i-shield"/></svg>
+              </span>
+              <div>
+                <strong>Keamanan Prioritas</strong>
+                <small>Informasi keamanan akun</small>
+              </div>
+            </div>
+
+            <div class="benefit">
+              <span class="benefit-icon">
+                <svg class="icon"><use href="#i-clock"/></svg>
+              </span>
+              <div>
+                <strong>Informasi Terarah</strong>
+                <small>Panduan dalam satu tempat</small>
+              </div>
+            </div>
+
+            <div class="benefit">
+              <span class="benefit-icon">
+                <svg class="icon"><use href="#i-message"/></svg>
+              </span>
+              <div>
+                <strong>Pusat Bantuan</strong>
+                <small>Temukan cara mendapatkan bantuan</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-label="Ilustrasi antarmuka ReyCode Shop">
+          <div class="visual-glow"></div>
+
+          <div class="device">
+            <div class="device-top">
+              <div class="device-mark">R</div>
+              <div>
+                <strong>ReyCode Shop</strong>
+                <small>Digital Store & Information</small>
+              </div>
+            </div>
+
+            <div class="device-label">Explore ReyCode Shop</div>
+
+            <a href="#layanan" class="device-item">
+              <svg class="icon"><use href="#i-layers"/></svg>
+              <span>Layanan Digital</span>
+              <span style="margin-left:auto">↗</span>
+            </a>
+
+            <a href="#panduan" class="device-item">
+              <svg class="icon"><use href="#i-book"/></svg>
+              <span>Panduan Penggunaan</span>
+              <span style="margin-left:auto">↗</span>
+            </a>
+
+            <a href="#faq" class="device-item">
+              <svg class="icon"><use href="#i-help"/></svg>
+              <span>FAQ & Informasi</span>
+              <span style="margin-left:auto">↗</span>
+            </a>
+
+            <a href="#bantuan" class="device-item">
+              <svg class="icon"><use href="#i-message"/></svg>
+              <span>Pusat Bantuan</span>
+              <span style="margin-left:auto">↗</span>
+            </a>
+
+            <div class="device-bottom">
+              <span>REYCODE / DOCS</span>
+              <span>01 — 04</span>
+            </div>
+          </div>
+
+          <div class="floating-card">
+            <svg class="icon"><use href="#i-package"/></svg>
+            <strong>Digital, lebih praktis.</strong>
+            <p>Kenali informasi sebelum menggunakan layanan.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INFORMATION CATEGORIES -->
+    <section class="section" id="layanan">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <span class="section-kicker">Jelajahi Informasi</span>
+            <h2>Apa yang ingin kamu ketahui?</h2>
+            <p>
+              Temukan informasi tentang ReyCode Shop, layanan, panduan,
+              dan pertanyaan umum dengan mudah.
+            </p>
+          </div>
+
+          <button class="search-box" type="button" id="openSearchSecondary"
+            style="text-align:left;cursor:pointer">
+            <svg class="icon"><use href="#i-search"/></svg>
+            <span style="color:#999;font-size:12px">
+              Cari artikel, layanan, atau pertanyaan...
+            </span>
+          </button>
+        </div>
+
+        <div class="info-grid" id="infoGrid">
+          <article class="info-card" data-search="tentang reycode shop profil visi misi informasi">
+            <div class="info-icon">
+              <svg class="icon"><use href="#i-package"/></svg>
+            </div>
+            <h3>Tentang ReyCode Shop</h3>
+            <p>
+              Kenali platform, tujuan, dan rencana ReyCode Shop dalam
+              menyediakan pengalaman layanan digital.
+            </p>
+            <a href="#tentang" class="info-link">
+              Pelajari lebih lanjut
+              <svg class="icon"><use href="#i-arrow"/></svg>
+            </a>
+          </article>
+
+          <article class="info-card" data-search="layanan produk katalog digital fitur">
+            <div class="info-icon">
+              <svg class="icon"><use href="#i-layers"/></svg>
+            </div>
+            <h3>Layanan Digital</h3>
+            <p>
+              Pelajari informasi layanan dan fitur yang akan tersedia
+              di platform ReyCode Shop.
+            </p>
+            <a href="#tentang-layanan" class="info-link">
+              Lihat informasi
+              <svg class="icon"><use href="#i-arrow"/></svg>
+            </a>
+          </article>
+
+          <article class="info-card" data-search="panduan penggunaan akun registrasi transaksi keamanan">
+            <div class="info-icon">
+              <svg class="icon"><use href="#i-file"/></svg>
+            </div>
+            <h3>Panduan Penggunaan</h3>
+            <p>
+              Pelajari langkah dasar untuk membuat akun, menjaga
+              keamanan, dan menggunakan fitur nantinya.
+            </p>
+            <a href="#panduan" class="info-link">
+              Baca panduan
+              <svg class="icon"><use href="#i-arrow"/></svg>
+            </a>
+          </article>
+
+          <article class="info-card" data-search="faq pertanyaan umum bantuan masalah">
+            <div class="info-icon">
+              <svg class="icon"><use href="#i-help"/></svg>
+            </div>
+            <h3>FAQ</h3>
+            <p>
+              Temukan jawaban untuk pertanyaan umum seputar akun,
+              layanan, dan penggunaan platform.
+            </p>
+            <a href="#faq" class="info-link">
+              Lihat FAQ
+              <svg class="icon"><use href="#i-arrow"/></svg>
+            </a>
+          </article>
+        </div>
+
+        <div class="empty-state" id="emptyState">
+          Informasi tidak ditemukan. Coba gunakan kata kunci lain.
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about-section" id="tentang">
+      <div class="container">
+        <div class="about-panel">
+          <div class="about-copy">
+            <span class="section-kicker">Tentang Kami</span>
+            <h2>Dirancang untuk pengalaman digital yang lebih sederhana.</h2>
+            <p>
+              ReyCode Shop adalah proyek platform toko digital yang
+              dikembangkan dengan fokus pada kemudahan penggunaan,
+              informasi yang jelas, dan pengalaman pengguna yang tertata.
+              Halaman ini akan menjadi pusat informasi untuk membantu
+              pengunjung memahami platform sebelum menggunakannya.
+            </p>
+            <p>
+              Fitur dan layanan akan diperkenalkan secara bertahap
+              seiring proses pengembangan platform.
+            </p>
+          </div>
+
+          <div class="about-stats">
+            <div class="stat-box">
+              <svg class="icon"><use href="#i-layers"/></svg>
+              <strong>Terstruktur</strong>
+              <span>Informasi tertata rapi</span>
+            </div>
+
+            <div class="stat-box">
+              <svg class="icon"><use href="#i-shield"/></svg>
+              <strong>Keamanan</strong>
+              <span>Menjadi prioritas rancangan</span>
+            </div>
+
+            <div class="stat-box">
+              <svg class="icon"><use href="#i-book"/></svg>
+              <strong>Dokumentasi</strong>
+              <span>Panduan mudah dipahami</span>
+            </div>
+
+            <div class="stat-box">
+              <svg class="icon"><use href="#i-message"/></svg>
+              <strong>Dukungan</strong>
+              <span>Informasi bantuan terpusat</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICE INFORMATION -->
+    <section class="section" id="tentang-layanan" style="padding-top:0">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <span class="section-kicker">Layanan</span>
+            <h2>Informasi layanan ReyCode Shop.</h2>
+            <p>
+              Area ini akan memuat katalog dan penjelasan layanan
+              yang sudah tersedia setelah pengembangan selesai.
+            </p>
+          </div>
+        </div>
+
+        <div class="info-grid">
+          <article class="info-card" data-search="katalog produk digital">
+            <div class="info-icon">
+              <svg class="icon"><use href="#i-package"/></svg>
+            </div>
+            <h3>Katalog Digital</h3>
+            <p>
+              Tempat untuk menjelajahi produk dan detail layanan
+              ketika katalog sudah diaktifkan.
+            </p>
+            <span class="info-link" style="color:#777">
+              Dalam pengembangan
+            </span>
+          </article>
+
+          <article class="info-card" data-search="akun pengguna dashboard profil">
+            <div class="info-icon">
+              <svg class="icon"><use href="#i-info"/></svg>
+            </div>
+            <h3>Akun Pengguna</h3>
+            <p>
+              Area akun direncanakan untuk mengelola profil dan
+              mengakses fitur yang tersedia.
+            </p>
+            <span class="info-link" style="color:#777">
+              Dalam pengembangan
+            </span>
+          </article>
+
+          <article class="info-card" data-search="riwayat transaksi pesanan status">
+            <div class="info-icon">
+              <svg class="icon"><use href="#i-file"/></svg>
+            </div>
+            <h3>Riwayat Transaksi</h3>
+            <p>
+              Rancangan untuk melihat detail pesanan dan status
+              transaksi jika fitur telah tersedia.
+            </p>
+            <span class="info-link" style="color:#777">
+              Dalam pengembangan
+            </span>
+          </article>
+
+          <article class="info-card" data-search="pusat bantuan laporan masalah">
+            <div class="info-icon">
+              <svg class="icon"><use href="#i-message"/></svg>
+            </div>
+            <h3>Pusat Bantuan</h3>
+            <p>
+              Tempat mencari panduan dan informasi untuk melaporkan
+              kendala penggunaan platform.
+            </p>
+            <a href="#bantuan" class="info-link">
+              Lihat bantuan
+              <svg class="icon"><use href="#i-arrow"/></svg>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- GUIDES -->
+    <section class="section" id="panduan" style="background:#f7f7f7">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <span class="section-kicker">Panduan Pengguna</span>
+            <h2>Mulai dari langkah sederhana.</h2>
+            <p>
+              Ringkasan hal yang perlu diketahui sebelum menggunakan
+              layanan ReyCode Shop.
+            </p>
+          </div>
+        </div>
+
+        <div class="info-grid">
+          <article class="info-card" data-search="panduan daftar register akun baru">
+            <div class="info-icon">
+              <svg class="icon"><use href="#i-info"/></svg>
+            </div>
+            <h3>1. Membuat Akun</h3>
+            <p>
+              Pelajari ketentuan username, email, dan keamanan kata sandi
+              ketika pendaftaran telah diaktifkan.
+            </p>
+            <a href="auth.html" class="info-link">
+              Buka halaman akun
+              <svg class="icon"><use href="#i-arrow"/></svg>
+            </a>
+          </article>
+
+          <article class="info-card" data-search="panduan keamanan password akun">
+            <div class="info-icon">
+              <svg class="icon"><use href="#i-shield"/></svg>
+            </div>
+            <h3>2. Keamanan Akun</h3>
+            <p>
+              Gunakan kata sandi yang kuat dan jangan membagikan
+              kata sandi maupun kode OTP kepada siapa pun.
+            </p>
+            <a href="#faq" class="info-link">
+              Pelajari FAQ
+              <svg class="icon"><use href="#i-arrow"/></svg>
+            </a>
+          </article>
+
+          <article class="info-card" data-search="panduan layanan transaksi pembayaran pesanan">
+            <div class="info-icon">
+              <svg class="icon"><use href="#i-book"/></svg>
+            </div>
+            <h3>3. Menggunakan Layanan</h3>
+            <p>
+              Baca detail layanan, ketentuan, dan informasi transaksi
+              sebelum menggunakan fitur yang tersedia.
+            </p>
+            <a href="#layanan" class="info-link">
+              Lihat layanan
+              <svg class="icon"><use href="#i-arrow"/></svg>
+            </a>
+          </article>
+
+          <article class="info-card" data-search="panduan bantuan lapor masalah kendala">
+            <div class="info-icon">
+              <svg class="icon"><use href="#i-message"/></svg>
+            </div>
+            <h3>4. Mendapatkan Bantuan</h3>
+            <p>
+              Siapkan penjelasan masalah dan informasi pendukung
+              yang tidak bersifat rahasia saat melaporkan kendala.
+            </p>
+            <a href="#bantuan" class="info-link">
+              Hubungi bantuan
+              <svg class="icon"><use href="#i-arrow"/></svg>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section faq-section" id="faq">
+      <div class="container faq-layout">
+        <div class="faq-intro">
+          <span class="section-kicker">FAQ</span>
+          <h2>Pertanyaan yang sering diajukan.</h2>
+          <p>
+            Belum menemukan jawaban yang kamu cari? Baca informasi
+            yang tersedia atau kunjungi bagian bantuan.
+          </p>
+          <a href="#bantuan" class="button button-dark" style="margin-top:22px">
+            Pusat Bantuan
+            <svg class="icon"><use href="#i-arrow"/></svg>
+          </a>
+        </div>
+
+        <div class="faq-list">
+          <article class="faq-item active">
+            <button class="faq-question" type="button" aria-expanded="true">
+              Apa itu ReyCode Shop?
+              <svg class="icon"><use href="#i-plus"/></svg>
+            </button>
+            <div class="faq-answer">
+              ReyCode Shop adalah proyek platform toko digital yang
+              sedang dikembangkan. Halaman ini menyediakan informasi,
+              panduan, dan gambaran fitur yang direncanakan.
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              Apakah saya sudah bisa bertransaksi?
+              <svg class="icon"><use href="#i-plus"/></svg>
+            </button>
+            <div class="faq-answer">
+              Belum tentu. Halaman ini masih berupa frontend. Fitur
+              transaksi baru dapat digunakan setelah backend,
+              katalog, dan sistem pembayaran benar-benar diimplementasikan
+              serta dinyatakan siap.
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              Bagaimana cara membuat akun?
+              <svg class="icon"><use href="#i-plus"/></svg>
+            </button>
+            <div class="faq-answer">
+              Gunakan tombol Masuk / Daftar untuk membuka halaman
+              autentikasi. Pada tahap UI ini, form tersebut belum
+              terhubung ke backend dan belum membuat akun sungguhan.
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              Apakah data saya sudah tersimpan?
+              <svg class="icon"><use href="#i-plus"/></svg>
+            </button>
+            <div class="faq-answer">
+              Tidak ada penyimpanan akun atau transaksi pada halaman
+              ini. Sistem database dan autentikasi belum terhubung.
+              Jangan masukkan informasi rahasia dengan asumsi data
+              sudah dikelola oleh sistem produksi.
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              Bagaimana cara melaporkan kendala?
+              <svg class="icon"><use href="#i-plus"/></svg>
+            </button>
+            <div class="faq-answer">
+              Kamu dapat menggunakan saluran Instagram ReyCode yang
+              dicantumkan pada bagian bantuan. Jangan pernah mengirimkan
+              kata sandi, OTP, atau kredensial akun saat meminta bantuan.
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- HELP -->
+    <section class="cta-section" id="bantuan">
+      <div class="container">
+        <div class="cta-panel">
+          <div class="cta-content">
+            <span class="section-kicker">Mulai Sekarang</span>
+            <h2>Siap mengenal ReyCode Shop lebih jauh?</h2>
+            <p>
+              Jelajahi informasi yang tersedia atau buka halaman akun
+              untuk melihat rancangan antarmuka autentikasi.
+            </p>
+
+            <div class="cta-actions">
+              <a href="auth.html" class="button button-white">
+                Masuk / Daftar
+                <svg class="icon"><use href="#i-arrow"/></svg>
+              </a>
+
+              <a href="https://www.instagram.com/reycode_bukandev/"
+                 target="_blank" rel="noopener noreferrer"
+                 class="button button-outline">
+                Hubungi Kami
+                <svg class="icon"><use href="#i-external"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="cta-badge">
+            <div class="brand-logo">R</div>
+            <strong>ReyCode Shop</strong>
+            <span>Digital Store Project</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <a href="#beranda" class="brand">
+            <span class="brand-logo">R</span>
+            <span class="brand-name">ReyCode Shop</span>
+          </a>
+          <p>
+            Informasi layanan digital, panduan penggunaan, dan
+            pusat informasi ReyCode Shop.
+          </p>
+        </div>
+
+        <div class="footer-column">
+          <h3>Navigasi</h3>
+          <a href="#beranda">Beranda</a>
+          <a href="#tentang">Tentang Kami</a>
+          <a href="#layanan">Layanan</a>
+          <a href="#panduan">Panduan</a>
+          <a href="#faq">FAQ</a>
+        </div>
+
+        <div class="footer-column">
+          <h3>Bantuan</h3>
+          <a href="#bantuan">Pusat Bantuan</a>
+          <a href="https://www.instagram.com/reycode_bukandev/"
+             target="_blank" rel="noopener noreferrer">Hubungi Kami</a>
+          <a href="#faq">Pertanyaan Umum</a>
+          <a href="#panduan">Keamanan Akun</a>
+        </div>
+
+        <div class="newsletter">
+          <h3>Informasi ReyCode Shop</h3>
+          <p>
+            Kunjungi saluran resmi untuk mendapatkan informasi
+            terbaru ketika layanan dan pengumuman tersedia.
+          </p>
+          <a class="button button-white"
+             href="https://www.instagram.com/reycode_bukandev/"
+             target="_blank" rel="noopener noreferrer"
+             style="margin-top:15px">
+            Instagram Resmi
+            <svg class="icon"><use href="#i-external"/></svg>
+          </a>
+          <p class="newsletter-note">
+            Form newsletter belum diaktifkan.
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© <span id="year"></span> ReyCode Shop. All rights reserved.</p>
+
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/reycode_bukandev/"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="Instagram ReyCode Shop">
+            <svg class="icon" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.7">
+              <rect x="3" y="3" width="18" height="18" rx="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/>
+            </svg>
+          </a>
+          <a href="#bantuan" aria-label="Pusat bantuan">
+            <svg class="icon"><use href="#i-message"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SEARCH DIALOG -->
+  <div class="search-overlay" id="searchOverlay" aria-hidden="true">
+    <div class="search-dialog" role="dialog" aria-modal="true"
+         aria-labelledby="searchTitle">
+      <div class="dialog-top">
+        <strong id="searchTitle">Cari informasi ReyCode Shop</strong>
+        <button class="close-search" id="closeSearch" type="button"
+                aria-label="Tutup pencarian">
+          <svg class="icon"><use href="#i-x"/></svg>
+        </button>
+      </div>
+
+      <label class="dialog-input">
+        <svg class="icon"><use href="#i-search"/></svg>
+        <input type="search" id="globalSearch"
+               placeholder="Ketik layanan, panduan, FAQ..."
+               autocomplete="off">
+      </label>
+
+      <div class="search-results" id="searchResults">
+        <a class="search-result" href="#tentang">
+          <svg class="icon"><use href="#i-info"/></svg>
+          Tentang ReyCode Shop
+        </a>
+        <a class="search-result" href="#layanan">
+          <svg class="icon"><use href="#i-layers"/></svg>
+          Informasi layanan
+        </a>
+        <a class="search-result" href="#panduan">
+          <svg class="icon"><use href="#i-book"/></svg>
+          Panduan penggunaan
+        </a>
+        <a class="search-result" href="#faq">
+          <svg class="icon"><use href="#i-help"/></svg>
+          FAQ
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    "use strict";
+
+    // Tahun footer
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    // Mobile navigation
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.setAttribute(
+        "aria-label",
+        isOpen ? "Tutup menu" : "Buka menu"
+      );
+
+      menuToggle.innerHTML = isOpen
+        ? '<svg class="icon"><use href="#i-x"/></svg>'
+        : '<svg class="icon"><use href="#i-menu"/></svg>';
+    });
+
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Buka menu");
+        menuToggle.innerHTML =
+          '<svg class="icon"><use href="#i-menu"/></svg>';
+      });
+    });
+
+    // FAQ accordion
+    document.querySelectorAll(".faq-question").forEach(button => {
+      button.addEventListener("click", () => {
+        const item = button.closest(".faq-item");
+        const wasOpen = item.classList.contains("active");
+
+        document.querySelectorAll(".faq-item").forEach(faq => {
+          faq.classList.remove("active");
+          faq.querySelector(".faq-question")
+            .setAttribute("aria-expanded", "false");
+        });
+
+        if (!wasOpen) {
+          item.classList.add("active");
+          button.setAttribute("aria-expanded", "true");
+        }
+      });
+    });
+
+    // Search modal
+    const searchOverlay = document.getElementById("searchOverlay");
+    const globalSearch = document.getElementById("globalSearch");
+    const searchResults = document.getElementById("searchResults");
+
+    const searchableItems = [
+      {
+        title: "Tentang ReyCode Shop",
+        keywords: "tentang profil visi misi informasi",
+        target: "#tentang",
+        icon: "#i-info"
+      },
+      {
+        title: "Informasi layanan",
+        keywords: "layanan produk katalog digital fitur",
+        target: "#layanan",
+        icon: "#i-layers"
+      },
+      {
+        title: "Panduan penggunaan",
+        keywords: "panduan akun registrasi keamanan transaksi",
+        target: "#panduan",
+        icon: "#i-book"
+      },
+      {
+        title: "FAQ",
+        keywords: "faq pertanyaan umum",
+        target: "#faq",
+        icon: "#i-help"
+      },
+      {
+        title: "Pusat bantuan",
+        keywords: "bantuan laporan masalah kontak",
+        target: "#bantuan",
+        icon: "#i-message"
+      },
+      {
+        title: "Login dan Register",
+        keywords: "login masuk daftar register akun",
+        target: "auth.html",
+        icon: "#i-shield"
+      }
+    ];
+
+    function openSearch() {
+      searchOverlay.classList.add("open");
+      searchOverlay.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+
+      setTimeout(() => globalSearch.focus(), 50);
+      renderSearchResults("");
+    }
+
+    function closeSearch() {
+      searchOverlay.classList.remove("open");
+      searchOverlay.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    function renderSearchResults(query) {
+      const term = query.trim().toLowerCase();
+
+      const matches = searchableItems.filter(item =>
+        (item.title + " " + item.keywords)
+          .toLowerCase()
+          .includes(term)
+      );
+
+      if (!matches.length) {
+        searchResults.innerHTML =
+          '<div class="no-results">Tidak ada hasil yang cocok.</div>';
+        return;
+      }
+
+      searchResults.replaceChildren();
+
+      matches.forEach(item => {
+        const link = document.createElement("a");
+        link.className = "search-result";
+        link.href = item.target;
+
+        const icon = document.createElementNS(
+          "http://www.w3.org/2000/svg", "svg"
+        );
+        icon.setAttribute("class", "icon");
+
+        const use = document.createElementNS(
+          "http://www.w3.org/2000/svg", "use"
+        );
+        use.setAttribute("href", item.icon);
+        icon.appendChild(use);
+
+        const label = document.createElement("span");
+        label.textContent = item.title;
+
+        link.append(icon, label);
+        link.addEventListener("click", closeSearch);
+        searchResults.appendChild(link);
+      });
+    }
+
+    document.getElementById("openSearch")
+      .addEventListener("click", openSearch);
+
+    document.getElementById("openSearchSecondary")
+      .addEventListener("click", openSearch);
+
+    document.getElementById("closeSearch")
+      .addEventListener("click", closeSearch);
+
+    globalSearch.addEventListener("input", event => {
+      renderSearchResults(event.target.value);
+    });
+
+    searchOverlay.addEventListener("click", event => {
+      if (event.target === searchOverlay) closeSearch();
+    });
+
+    document.addEventListener("keydown", event => {
+      const isMac = navigator.platform
+        .toUpperCase()
+        .includes("MAC");
+
+      if (
+        (isMac ? event.metaKey : event.ctrlKey) &&
+        event.key.toLowerCase() === "k"
+      ) {
+        event.preventDefault();
+        openSearch();
+      }
+
+      if (event.key === "Escape") closeSearch();
+    });
+
+    // Newsletter belum diaktifkan; tidak mengirim atau menyimpan data.
+  </script>
+</body>
+</html>
